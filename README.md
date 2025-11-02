@@ -1,5 +1,11 @@
 # Firebase Crashlytics Web Platform Issue - Reproduction
 
+> **⚠️ ARCHIVED REPOSITORY**
+>
+> This repository has been archived and is now read-only. The issue documented here has been resolved and the root cause identified. This repository serves as a reference for developers encountering similar Firebase Crashlytics web platform issues.
+>
+> **Related Flutter Issue**: [flutter/flutter#177892](https://github.com/flutter/flutter/issues/177892) (closed - not a Flutter bug)
+
 This repository demonstrates a common issue when using Firebase Crashlytics in Flutter web applications.
 
 ## Issue Summary
