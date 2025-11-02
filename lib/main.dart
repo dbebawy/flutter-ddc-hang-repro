@@ -1,5 +1,9 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'firebase_options.dart';
 
 // Import all generated controllers to force them into compilation
 import 'controllers/controller_1.dart';
@@ -18,7 +22,19 @@ import 'ui/screens/screen_3.dart';
 import 'ui/screens/screen_4.dart';
 import 'ui/screens/screen_5.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  // FIX: Firebase Crashlytics is NOT supported on web platform
+  // Attempting to use it on web causes: "pluginConstants['isCrashlyticsCollectionEnabled'] != null is not true"
+  // See: https://firebase.google.com/docs/crashlytics/get-started?platform=flutter#availability
+  if (!kIsWeb) {
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  }
+
   runApp(const MyApp());
 }
 
